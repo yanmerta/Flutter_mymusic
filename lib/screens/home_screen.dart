@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_music_app_ui/login.dart';
+import 'package:flutter_music_app_ui/screens/pengaturan_page.dart';
 
 import '../models/playlist_model.dart';
 import '../models/song_model.dart';
@@ -33,29 +35,44 @@ class HomeScreen extends StatelessWidget {
           backgroundColor: Colors.deepPurple.shade800.withOpacity(0.8),
         ),
         drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: const <Widget> [
-              UserAccountsDrawerHeader(
-                decoration:  BoxDecoration(color: Colors.deepPurple),
-                accountName: Text('Wayan Merta'),
-                accountEmail: Text('wayan0468@gmail.com'),
-                currentAccountPicture:  CircleAvatar(
-                  backgroundImage: AssetImage('assets/images/serana.jpg'),
-                ),
-              ),
-              // Divider(),
-              // ListTile(
-              //   title: Text('Keluar'),
-              //   leading: Icon(Icons.exit_to_app),
-              //   onTap: () {
-              //     Navigator.push(context,
-              //       MaterialPageRoute(builder: (context) => LoginPage()));
-              //   },
-              // ),
-              // DrawerHeader(decoration: BoxDecoration(color: Colors.deepPurple), child: Text('Profil'),)
-            ],
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          UserAccountsDrawerHeader(
+            decoration: BoxDecoration(color: Colors.deepPurple.shade400),
+            accountName: Text('Wayan Merta'),
+            accountEmail: Text('wayan0468@gmail.com'),
+            currentAccountPicture: CircleAvatar(
+              backgroundImage: AssetImage('assets/images/merta.jpeg'),
+            ),
           ),
+          ListTile(
+            leading: Icon(Icons.settings),
+            title: Text('Setting', style: TextStyle(color: Colors.black),),
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => SettingPage()));
+              // navigate to home screen
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.percent),
+            title: Text('Item', style: TextStyle(color: Colors.black),),
+            onTap: () {
+              Navigator.pop(context);
+              // navigate to settings screen
+            },
+          ),
+          Divider(),
+          ListTile(
+            leading: Icon(Icons.logout),
+            title: Text('Logout', style: TextStyle(color: Colors.black),),
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginPage()));
+              // perform logout action
+            },
+          ),
+        ],
+      ),
         ),
         bottomNavigationBar: const _CustomNavBar(),
         body: SingleChildScrollView(
